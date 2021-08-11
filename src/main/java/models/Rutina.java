@@ -8,4 +8,5 @@ public interface Rutina {
     int getTiempo();
     int getDificultad();
     List<Ejercicio> getSubEjercicios();
+    String getMusculos();
 }

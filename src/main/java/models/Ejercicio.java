@@ -7,9 +7,9 @@ public class Ejercicio {
     int kcalPorRep;
     int duracionPorRep;
 
-    public Ejercicio(String nombre, String musculoPrincipal, String musculosSecundarios, int nivelDificultad, int kcalPorRep, int duracionPorRep) {
+    public Ejercicio(String nombre, String musculo, int nivelDificultad, int kcalPorRep, int duracionPorRep) {
         this.nombre = nombre;
-        this.musculos = musculoPrincipal;
+        this.musculos = musculo;
         this.nivelDificultad = nivelDificultad;
         this.kcalPorRep = kcalPorRep;
         this.duracionPorRep = duracionPorRep;

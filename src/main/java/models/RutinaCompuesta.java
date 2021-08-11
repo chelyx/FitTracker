@@ -48,4 +48,9 @@ public class RutinaCompuesta implements Rutina {
         List<List<Ejercicio>> list = this.rutinas.stream().map(r -> r.getSubEjercicios()).collect(Collectors.toList());
         return list.stream().flatMap(List::stream).collect(Collectors.toList());
     }
+
+    @Override
+    public String getMusculos() {
+        return this.rutinas.stream().map(r -> r.getMusculos()).collect(Collectors.joining(", "));
+    }
 }

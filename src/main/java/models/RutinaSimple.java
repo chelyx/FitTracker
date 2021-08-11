@@ -18,10 +18,14 @@ public class RutinaSimple implements Rutina{
         this.ejercicios.put(ej, reps);
     }
 
+    public void removeEjercicio(Ejercicio ej) {
+        this.ejercicios.remove(ej);
+    }
+
     @Override
     public int getKcal() {
        return this.ejercicios.entrySet().stream()
-               .mapToInt((entry) -> entry.getKey().kcalPorRep * entry.getValue()).sum();
+               .mapToInt((entry) -> entry.getKey().getKcalPorRep() * entry.getValue()).sum();
     }
 
     @Override
@@ -34,13 +38,18 @@ public class RutinaSimple implements Rutina{
     public int getDificultad() {
         return this.ejercicios.entrySet()
                 .stream()
-                .mapToInt(e -> e.getKey().nivelDificultad)
+                .mapToInt(e -> e.getKey().getNivelDificultad())
                 .sum() / this.ejercicios.entrySet().size();
     }
 
     @Override
     public List<Ejercicio> getSubEjercicios() {
         return this.ejercicios.entrySet().stream().map(entry -> entry.getKey()).collect(Collectors.toList());
+    }
+
+    @Override
+    public String getMusculos() {
+        return this.ejercicios.entrySet().stream().map(e -> e.getKey().getMusculos()).collect(Collectors.joining(", "));
     }
 
     @Override
