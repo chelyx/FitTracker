@@ -1,10 +1,9 @@
-import models.Ejercicio;
-import models.RutinaCompuesta;
-import models.RutinaSimple;
+import entities.Ejercicio;
+import entities.RutinaCompuesta;
+import entities.RutinaSimple;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,5 +47,6 @@ public class RutinasTest {
         assertEquals(4, fullbody.getDificultad());
         assertEquals(264, fullbody.getKcal());
         assertEquals(260, fullbody.getTiempo());
+        assertEquals("Fullbody", fullbody.getNombre());
     }
 }

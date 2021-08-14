@@ -18,6 +18,6 @@ public class Notification {
     }
 
     public String toString(){
-        return "["+getSubject()+"]"+getBody();
+        return "[" + getSubject() + "]" + getBody();
     }
 }
