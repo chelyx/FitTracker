@@ -1,19 +1,19 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name="rutina_compuesta")
-public class RutinaCompuesta implements Rutina {
-    @Id
-    @GeneratedValue
-    private int id;
-    @Column
+@DiscriminatorValue("COMPUESTA")
+public class RutinaCompuesta extends Rutina implements Serializable {
+
+    @Column(name="NOMBRE")
     private String nombre;
-    @Transient
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Rutina> rutinas;
 
     public RutinaCompuesta(String nombre) {

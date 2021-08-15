@@ -10,9 +10,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class RutinasTest {
-    Ejercicio sentadilla = new Ejercicio("sentadilla", "gluteo", 2, 5, 10);
-    Ejercicio hipthrust = new Ejercicio("hip-thrust", "cuadricep", 4, 10, 15);
-    Ejercicio vups = new Ejercicio("v-ups", "oblicuos", 6, 12, 5);
+    Ejercicio sentadilla = new Ejercicio("sentadilla", "gluteo", 2, 5, 10, 8);
+    Ejercicio hipthrust = new Ejercicio("hip-thrust", "cuadricep", 4, 10, 15, 10);
+    Ejercicio vups = new Ejercicio("v-ups", "oblicuos", 6, 12, 5, 12);
     RutinaSimple rutina1 = new RutinaSimple("piernas");
 
     @Before
@@ -20,8 +20,8 @@ public class RutinasTest {
 
     @Test
     public void lasRutinasSimplesFuncionanCorrectamente() {
-        rutina1.addEjercicio(sentadilla, 8);
-        rutina1.addEjercicio(hipthrust, 10);
+        rutina1.addEjercicio(sentadilla);
+        rutina1.addEjercicio(hipthrust);
         List<Ejercicio> lista = Arrays.asList(hipthrust, sentadilla);
 
         assertEquals(3 , rutina1.getDificultad());
@@ -36,9 +36,9 @@ public class RutinasTest {
         RutinaSimple rutina2 = new RutinaSimple("abs");
         RutinaCompuesta fullbody = new RutinaCompuesta("Fullbody");
         List<Ejercicio> lista = Arrays.asList(sentadilla, hipthrust , vups);
-        rutina1.addEjercicio(sentadilla, 8);
-        rutina1.addEjercicio(hipthrust, 8);
-        rutina2.addEjercicio(vups, 12);
+        rutina1.addEjercicio(sentadilla);
+        rutina1.addEjercicio(hipthrust);
+        rutina2.addEjercicio(vups);
         fullbody.add(rutina1);
         fullbody.add(rutina2);
 

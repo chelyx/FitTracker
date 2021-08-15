@@ -17,7 +17,7 @@ public class SMSNotification implements Notifier{
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         try{
             Message message = Message.creator(
-                new PhoneNumber("+"+ aPerson.getPhone()), //numero al que van a llegar los mensajes, aca iria el de la persona que quiero notificar
+                new PhoneNumber("+"+ aPerson.getTelefono()), //numero al que van a llegar los mensajes, aca iria el de la persona que quiero notificar
                 new PhoneNumber("+"+ourPhone),
                 msg.toString()
             ).create();

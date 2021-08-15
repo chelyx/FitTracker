@@ -1,14 +1,33 @@
 package entities;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.List;
 
-@MappedSuperclass
-public interface Rutina {
-    String getNombre();
-    int getKcal();
-    int getTiempo();
-    int getDificultad();
-    List<String> getSubEjercicios();
-    String getMusculos();
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "RUTINA")
+@DiscriminatorColumn(name = "TIPO")
+public abstract class Rutina {
+    @Id
+    @GeneratedValue
+    private int id;
+
+    String getNombre() {
+        return null;
+    }
+    int getKcal(){
+        return 0;
+    }
+    int getTiempo(){
+        return 0;
+    }
+    int getDificultad(){
+        return 0;
+    }
+    List<String> getSubEjercicios(){
+        return null;
+    }
+    String getMusculos(){
+        return null;
+    }
 }

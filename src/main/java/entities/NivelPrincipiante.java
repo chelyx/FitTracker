@@ -4,7 +4,12 @@ import entities.Nivel;
 import entities.Rutina;
 import entities.RutinaSimple;
 
-public class NivelPrincipiante implements Nivel {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("PRINCIPIANTE")
+public class NivelPrincipiante extends Nivel {
     public Rutina sugerir(){
         return new RutinaSimple("Abdominales");
     }

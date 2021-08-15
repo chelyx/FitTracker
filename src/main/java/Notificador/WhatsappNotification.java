@@ -17,7 +17,7 @@ public class WhatsappNotification implements Notifier{
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
             try{
                 Message.creator(
-                    new PhoneNumber("whatsapp:+"+aPerson.getPhone()),
+                    new PhoneNumber("whatsapp:+"+aPerson.getTelefono()),
                     new PhoneNumber("whatsapp:+"+ourPhone),
                     message.toString()
                 ).create();

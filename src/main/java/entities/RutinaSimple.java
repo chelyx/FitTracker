@@ -1,21 +1,27 @@
 package entities;
 
-import java.util.HashMap;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RutinaSimple implements Rutina{
+@Entity
+@DiscriminatorValue("SIMPLE")
+public class RutinaSimple extends Rutina implements Serializable {
+    @Column(name = "NOMBRE")
     private String nombre;
-    private Map<Ejercicio, Integer> ejercicios;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Ejercicio> ejercicios;
 
     public RutinaSimple(String nombre) {
         this.nombre = nombre;
-        this.ejercicios = new HashMap<>();
+        this.ejercicios = new ArrayList<>();
     }
 
-    public void addEjercicio(Ejercicio ej, Integer reps) {
-        this.ejercicios.put(ej, reps);
+    public void addEjercicio(Ejercicio ej) {
+        this.ejercicios.add(ej);
     }
 
     public void removeEjercicio(Ejercicio ej) {
@@ -24,32 +30,31 @@ public class RutinaSimple implements Rutina{
 
     @Override
     public int getKcal() {
-       return this.ejercicios.entrySet().stream()
-               .mapToInt((entry) -> entry.getKey().getKcalPorRep() * entry.getValue()).sum();
+       return this.ejercicios.stream()
+               .mapToInt((entry) -> entry.getKcalPorRep() * entry.getRepeticiones()).sum();
     }
 
     @Override
     public int getTiempo() {
-        return this.ejercicios.entrySet().stream()
-                .mapToInt((entry) -> entry.getKey().getDuracionPorRep() * entry.getValue()).sum();
+        return this.ejercicios.stream()
+                .mapToInt((entry) -> entry.getDuracionPorRep() * entry.getRepeticiones()).sum();
     }
 
     @Override
     public int getDificultad() {
-        return this.ejercicios.entrySet()
-                .stream()
-                .mapToInt(e -> e.getKey().getNivelDificultad())
-                .sum() / this.ejercicios.entrySet().size();
+        return this.ejercicios.stream()
+                .mapToInt(e -> e.getNivelDificultad())
+                .sum() / this.ejercicios.size();
     }
 
     @Override
     public List<String> getSubEjercicios() {
-        return this.ejercicios.entrySet().stream().map(entry -> entry.getKey().getNombre()).collect(Collectors.toList());
+        return this.ejercicios.stream().map(entry -> entry.getNombre()).collect(Collectors.toList());
     }
 
     @Override
     public String getMusculos() {
-        return this.ejercicios.entrySet().stream().map(e -> e.getKey().getMusculos()).collect(Collectors.joining(", "));
+        return this.ejercicios.stream().map(e -> e.getMusculos()).collect(Collectors.joining(", "));
     }
 
     @Override

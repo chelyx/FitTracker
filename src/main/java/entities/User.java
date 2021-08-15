@@ -4,47 +4,53 @@ import Notificador.Notifier;
 import entities.Nivel;
 import entities.Rutina;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "USUARIO")
 public class User extends EntidadPersistente{
-    @Column
+    @Column(name="USUARIO")
     private String usuario;
-    @Column
+
+    @Column(name="CONTRASEÑA")
     private String contraseña;
-    @Column
-    private String name;
-    @Column
-    private String lastName;
-    @Column
-    private Long phone;
-    @Column
+
+    @Column(name="NOMBRE")
+    private String nombre;
+
+    @Column(name="APELLIDO")
+    private String apellido;
+
+    @Column(name="TELEFONO")
+    private Long telefono;
+
+    @Column(name="MAIL")
     private String mail;
-    @Column
-    private Float weight;
-    @Column
-    private int height;
+
+    @Column(name="PESO")
+    private Float peso;
+
+    @Column(name="ALTURA")
+    private int altura;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Nivel nivel;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Rutina> misRutinas;
 
     @Transient
-    private Nivel nivel;
-    @Transient
-    private ArrayList<Rutina> misRutinas;
-    @Transient
-    private ArrayList<Notifier> formasDeNotificar;
+    private List<Notifier> formasDeNotificar;
 
     public User() {}
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public Long getPhone() {
-        return phone;
+    public Long getTelefono() {
+        return telefono;
     }
 
     public String getMail() {

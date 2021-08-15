@@ -31,7 +31,7 @@ public class NotificadorMail implements Notifier {
     private Message createMessage(Notification message, User receiver, Session auth) throws MessagingException, UnsupportedEncodingException {
         Message msg = new MimeMessage(auth);
                 msg.setFrom(new InternetAddress(emailAddress, name));
-                msg.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver.getMail(), receiver.getName()));
+                msg.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver.getMail(), receiver.getNombre()));
                 msg.setSubject(message.getSubject());
                 msg.setText(message.getBody());
 
