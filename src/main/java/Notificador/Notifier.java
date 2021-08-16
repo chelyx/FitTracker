@@ -1,7 +1,7 @@
 package Notificador;
 
-import entities.User;
+import entities.Usuario;
 
 public interface Notifier {
-    public void notify(User aPerson, Notification message);
+    public void notify(Usuario aPerson, Notification message);
 }

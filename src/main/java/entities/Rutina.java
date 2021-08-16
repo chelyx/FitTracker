@@ -12,22 +12,27 @@ public abstract class Rutina {
     @GeneratedValue
     private int id;
 
-    String getNombre() {
+    public void Rutina() {
+
+    }
+
+    public String getNombre() {
         return null;
     }
-    int getKcal(){
+    public int getKcal(){
         return 0;
     }
-    int getTiempo(){
+    public int getTiempo(){
         return 0;
     }
-    int getDificultad(){
+    public int getDificultad(){
         return 0;
     }
-    List<String> getSubEjercicios(){
+    public List<String> getSubEjercicios(){
         return null;
     }
-    String getMusculos(){
+    public String getMusculos(){
         return null;
     }
+    public void addEjercicio(Ejercicio ej) {}
 }

@@ -16,6 +16,9 @@ public class RutinaCompuesta extends Rutina implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Rutina> rutinas;
 
+    public RutinaCompuesta() {
+    }
+
     public RutinaCompuesta(String nombre) {
         this.nombre = nombre;
         this.rutinas = new ArrayList<Rutina>();

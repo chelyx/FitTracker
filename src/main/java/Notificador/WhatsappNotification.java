@@ -1,7 +1,7 @@
 package Notificador;
 
 //import Utils.Exceptions.NumeroDesconocidoException;
-import entities.User;
+import entities.Usuario;
 import com.twilio.Twilio;
 
 import com.twilio.exception.ApiException;
@@ -13,7 +13,7 @@ public class WhatsappNotification implements Notifier{
     final String AUTH_TOKEN = "729a4f71c681be20d527cf6a6b193b6b";
     private final String ourPhone = "14155238886";
 
-    public void notify(User aPerson, Notification message){
+    public void notify(Usuario aPerson, Notification message){
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
             try{
                 Message.creator(

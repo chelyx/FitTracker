@@ -1,6 +1,6 @@
 package Notificador;
 
-import entities.User;
+import entities.Usuario;
 import com.twilio.Twilio;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
@@ -13,7 +13,7 @@ public class SMSNotification implements Notifier{
     private final String ourPhone = "15852073818";
     //el numero que envia el SMS, aca va el proporcionado por twillo
 
-    public void notify(User aPerson, Notification msg){
+    public void notify(Usuario aPerson, Notification msg){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         try{
             Message message = Message.creator(

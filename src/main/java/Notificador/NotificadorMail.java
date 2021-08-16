@@ -1,7 +1,7 @@
 package Notificador;
 //import Utils.Exceptions.MailNoEnviadoException;
 
-import entities.User;
+import entities.Usuario;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -15,7 +15,7 @@ public class NotificadorMail implements Notifier {
     final String emailAddress = "fittracker.info@gmail.com";
     final String password = "Letstrain!";
 
-    public void notify(User aPerson, Notification message) {
+    public void notify(Usuario aPerson, Notification message) {
 
         Session sesion = Session.getDefaultInstance(getProperties(), getAutenticador());
 
@@ -28,7 +28,7 @@ public class NotificadorMail implements Notifier {
         }
     }
 
-    private Message createMessage(Notification message, User receiver, Session auth) throws MessagingException, UnsupportedEncodingException {
+    private Message createMessage(Notification message, Usuario receiver, Session auth) throws MessagingException, UnsupportedEncodingException {
         Message msg = new MimeMessage(auth);
                 msg.setFrom(new InternetAddress(emailAddress, name));
                 msg.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver.getMail(), receiver.getNombre()));
