@@ -3,6 +3,7 @@ package entities;
 import Notificador.Notifier;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class Usuario extends EntidadPersistente{
     private List<Rutina> misRutinas;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private HashMap<Date, Double> misPesajes;
+    private List<Pesaje> misPesajes;
 
     @Transient
     private List<Notifier> formasDeNotificar;
@@ -60,7 +61,7 @@ public class Usuario extends EntidadPersistente{
         this.altura = altura;
         this.nivel = new NivelPrincipiante();
         this.misRutinas = new ArrayList<>();
-        this.misPesajes = new HashMap<Date,Double>();
+        this.misPesajes = new ArrayList<>();
         this.formasDeNotificar = new ArrayList<>();
 
     }
@@ -125,7 +126,7 @@ public class Usuario extends EntidadPersistente{
         return mail;
     }
 
-    public HashMap<Date,Double> getMisPesajes(){return misPesajes;}
+    public List<Pesaje> getMisPesajes(){return misPesajes;}
 
     public void cambiarNivel(Nivel nivel){
         this.nivel = nivel;
@@ -139,11 +140,12 @@ public class Usuario extends EntidadPersistente{
         this.misRutinas.add(unaRutina);
     }
 
-    public void cargarPesaje(Date fecha,Double pesaje){
-        this.misPesajes.put(fecha,pesaje);
+    public void cargarPesaje(LocalDate fecha, Float pesaje){
+        Pesaje p = new Pesaje(fecha, pesaje);
+        this.misPesajes.add(p);
     }
 
-    public void dummyUser() {
+    public Usuario dummyUser() {
         this.usuario = "dummy";
         this.password = "pass123";
         this.nombre = "miNombre";
@@ -154,11 +156,11 @@ public class Usuario extends EntidadPersistente{
         this.altura = 166;
         this.nivel = new NivelPrincipiante();
         this.misRutinas = new ArrayList<>();
-        this.misPesajes = new HashMap<Date,Double>();
+        this.misPesajes = new ArrayList<>();
         this.formasDeNotificar = new ArrayList<>();
+        return this;
     }
-    public Usuario dummyUser2()
-    {
+    public Usuario dummyUser2() {
         Usuario usr = new Usuario();
         usr.usuario = "dummy";
         usr.password= "pass123";
@@ -170,7 +172,7 @@ public class Usuario extends EntidadPersistente{
         usr.altura = 166;
         usr.nivel = new NivelPrincipiante();
         usr.misRutinas = new ArrayList<>();
-        usr.misPesajes = new HashMap<Date,Double>();
+        usr.misPesajes = new ArrayList<>();
         usr.formasDeNotificar = new ArrayList<>();
         return usr;
     }

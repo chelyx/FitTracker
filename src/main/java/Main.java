@@ -11,7 +11,7 @@ import java.util.List;
 public class Main {/* pa probar cosas*/
     private static UsuarioRepository userRepo = new UsuarioRepository();
     private static RutinaRepository rutinasRepo = new RutinaRepository();
-    private static EjercicioRepository ejerRepo = new EjercicioRepository();
+    private static EjercicioRepository ejerciciosRepo = new EjercicioRepository();
     public static void main(String[] args) {
         /* TODO: BORRAR DE LA BD, SI LO VOLVES A CORRER LOS VOLVES A CREAR.
         Usuario usuario = new Usuario();
