@@ -4,6 +4,8 @@ import Notificador.Notifier;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -39,6 +41,9 @@ public class Usuario extends EntidadPersistente{
     @OneToMany(cascade = CascadeType.ALL)
     private List<Rutina> misRutinas;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private HashMap<Date, Double> misPesajes;
+
     @Transient
     private List<Notifier> formasDeNotificar;
 
@@ -55,7 +60,9 @@ public class Usuario extends EntidadPersistente{
         this.altura = altura;
         this.nivel = new NivelPrincipiante();
         this.misRutinas = new ArrayList<>();
+        this.misPesajes = new HashMap<Date,Double>();
         this.formasDeNotificar = new ArrayList<>();
+
     }
 
     public void setUsuario(String usuario) {
@@ -118,6 +125,8 @@ public class Usuario extends EntidadPersistente{
         return mail;
     }
 
+    public HashMap<Date,Double> getMisPesajes(){return misPesajes;}
+
     public void cambiarNivel(Nivel nivel){
         this.nivel = nivel;
     }
@@ -128,6 +137,10 @@ public class Usuario extends EntidadPersistente{
 
     public void cargarRutina(Rutina unaRutina){
         this.misRutinas.add(unaRutina);
+    }
+
+    public void cargarPesaje(Date fecha,Double pesaje){
+        this.misPesajes.put(fecha,pesaje);
     }
 
     public void dummyUser() {
@@ -141,6 +154,7 @@ public class Usuario extends EntidadPersistente{
         this.altura = 166;
         this.nivel = new NivelPrincipiante();
         this.misRutinas = new ArrayList<>();
+        this.misPesajes = new HashMap<Date,Double>();
         this.formasDeNotificar = new ArrayList<>();
     }
 }

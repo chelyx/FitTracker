@@ -64,4 +64,6 @@ public class RutinaCompuesta extends Rutina implements Serializable {
     public String getMusculos() {
         return this.rutinas.stream().map(r -> r.getMusculos()).collect(Collectors.joining(", "));
     }
+
+
 }
