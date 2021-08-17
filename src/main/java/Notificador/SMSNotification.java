@@ -8,9 +8,9 @@ import com.twilio.type.PhoneNumber;
 
 public class SMSNotification implements Notifier{
 
-    private final String ACCOUNT_SID = "AC621381f1e6eda571e0d2c14ede21697e"; //el SID del dashboard de twilo
-    private final String AUTH_TOKEN = "729a4f71c681be20d527cf6a6b193b6b";
-    private final String ourPhone = "15852073818";
+    private final String ACCOUNT_SID = "ACe56e55ea1e60341b883feff7815929e8"; //el SID del dashboard de twilo
+    private final String AUTH_TOKEN = "5491c8612eba5a12a0376c1546c3ff12";
+    private final String ourPhone = "19704091036";
     //el numero que envia el SMS, aca va el proporcionado por twillo
 
     public void notify(Usuario aPerson, Notification msg){

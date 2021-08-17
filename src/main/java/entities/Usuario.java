@@ -157,4 +157,21 @@ public class Usuario extends EntidadPersistente{
         this.misPesajes = new HashMap<Date,Double>();
         this.formasDeNotificar = new ArrayList<>();
     }
+    public Usuario dummyUser2()
+    {
+        Usuario usr = new Usuario();
+        usr.usuario = "dummy";
+        usr.password= "pass123";
+        usr.nombre = "miNombre";
+        usr.apellido = "miApellido";
+        usr.telefono = +5491124789473l;
+        usr.mail = "juanferro1400@gmail.com";
+        usr.peso = 65.0;
+        usr.altura = 166;
+        usr.nivel = new NivelPrincipiante();
+        usr.misRutinas = new ArrayList<>();
+        usr.misPesajes = new HashMap<Date,Double>();
+        usr.formasDeNotificar = new ArrayList<>();
+        return usr;
+    }
 }
