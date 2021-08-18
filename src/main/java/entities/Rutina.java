@@ -12,9 +12,7 @@ public abstract class Rutina {
     @GeneratedValue
     private int id;
 
-    public void Rutina() {
-
-    }
+    public void Rutina() {}
 
     public String getNombre() {
         return null;
@@ -34,5 +32,6 @@ public abstract class Rutina {
     public String getMusculos(){
         return null;
     }
-    public void addEjercicio(Ejercicio ej) {}
+    public void addEjercicio(Ejercicio ej) {}//TODO: revisar rutinas compuestas comportamiento
+    public void removeEjercicio(Ejercicio ej){}
 }

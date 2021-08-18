@@ -1,10 +1,8 @@
 package Calendarizacion;
 
-import Notificador.NotificadorMail;
 import Notificador.Notification;
-import Notificador.Notifier;
+import Notificador.Notificador;
 import Repositorios.UsuarioRepository;
-import entities.NivelPrincipiante;
 import entities.Rutina;
 import entities.Usuario;
 import org.quartz.*;
@@ -35,7 +33,7 @@ public class RecordatorioRutinas {
         @Override
         public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
             for (Usuario user : repoUsuarios.findAll()) {
-                List<Notifier> notificadores = user.getFormasDeNotificar();
+                List<Notificador> notificadores = user.getFormasDeNotificar();
                 String msg = user.getNombre() + ", te recordamos tus rutinas cargadas: \n";
                 for (Rutina rutina : user.getMisRutinas()) {
                     msg = msg + "-" + rutina.getNombre() + "\n";

@@ -1,12 +1,9 @@
 package Calendarizacion;
 
-import Notificador.NotificadorMail;
 import Notificador.Notification;
-import Notificador.Notifier;
-import Notificador.SMSNotification;
+import Notificador.Notificador;
 import Repositorios.UsuarioRepository;
 import entities.Usuario;
-import org.apache.http.cookie.SM;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import java.util.List;
@@ -33,7 +30,7 @@ public class RecordatorioPesaje {
         public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
             for(Usuario user : repoUsuarios.findAll()){
-                List<Notifier> notificadores =  user.getFormasDeNotificar();
+                List<Notificador> notificadores =  user.getFormasDeNotificar();
                 Notification notificacion = new Notification("Recordatorio: Pesaje diario",user.getNombre()+"! No olvides registrar tu peso!");
                 notificadores.forEach(not -> not.notify(user, notificacion));
             }

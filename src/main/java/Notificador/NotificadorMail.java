@@ -10,7 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.Authenticator;
 
-public class NotificadorMail implements Notifier {
+public class NotificadorMail implements Notificador {
     final String name = "INFO FIT TRACKER";
     final String emailAddress = "fittracker.info@gmail.com";
     final String password = "Letstrain!";

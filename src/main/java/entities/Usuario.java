@@ -1,12 +1,10 @@
 package entities;
 
-import Notificador.Notifier;
+import Notificador.Notificador;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -30,9 +28,6 @@ public class Usuario extends EntidadPersistente{
     @Column(name="MAIL")
     private String mail;
 
-    @Column(name="PESO")
-    private double peso;
-
     @Column(name="ALTURA")
     private int altura;
 
@@ -46,18 +41,17 @@ public class Usuario extends EntidadPersistente{
     private List<Pesaje> misPesajes;
 
     @Transient
-    private List<Notifier> formasDeNotificar;
+    private List<Notificador> formasDeNotificar;
 
     public Usuario() {}
 
-    public Usuario(String usuario, String password, String nombre, String apellido, Long telefono, String mail, Float peso, int altura) {
+    public Usuario(String usuario, String password, String nombre, String apellido, Long telefono, String mail, int altura) {
         this.usuario = usuario;
         this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.mail = mail;
-        this.peso = peso;
         this.altura = altura;
         this.nivel = new NivelPrincipiante();
         this.misRutinas = new ArrayList<>();
@@ -72,10 +66,6 @@ public class Usuario extends EntidadPersistente{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
     }
 
     public void setAltura(int altura) {
@@ -94,10 +84,6 @@ public class Usuario extends EntidadPersistente{
         return apellido;
     }
 
-    public double getPeso() {
-        return peso;
-    }
-
     public int getAltura() {
         return altura;
     }
@@ -110,7 +96,7 @@ public class Usuario extends EntidadPersistente{
         return misRutinas;
     }
 
-    public List<Notifier> getFormasDeNotificar() {
+    public List<Notificador> getFormasDeNotificar() {
         return formasDeNotificar;
     }
 
@@ -152,7 +138,6 @@ public class Usuario extends EntidadPersistente{
         this.apellido = "miApellido";
         this.telefono = 11111L;
         this.mail = "mail@gmail.com";
-        this.peso = 65.0;
         this.altura = 166;
         this.nivel = new NivelPrincipiante();
         this.misRutinas = new ArrayList<>();
@@ -168,7 +153,6 @@ public class Usuario extends EntidadPersistente{
         usr.apellido = "miApellido";
         usr.telefono = +5491124789473l;
         usr.mail = "juanferro1400@gmail.com";
-        usr.peso = 65.0;
         usr.altura = 166;
         usr.nivel = new NivelPrincipiante();
         usr.misRutinas = new ArrayList<>();
