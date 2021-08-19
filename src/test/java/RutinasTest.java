@@ -39,8 +39,8 @@ public class RutinasTest {
         rutina1.addEjercicio(sentadilla);
         rutina1.addEjercicio(hipthrust);
         rutina2.addEjercicio(vups);
-        fullbody.add(rutina1);
-        fullbody.add(rutina2);
+        fullbody.addRutina(rutina1);
+        fullbody.addRutina(rutina2);
 
         assertEquals(lista,  fullbody.getSubEjercicios());
         assertEquals("gluteo, cuadricep, oblicuos", fullbody.getMusculos());

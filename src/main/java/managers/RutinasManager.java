@@ -7,6 +7,10 @@ import entities.Rutina;
 public class RutinasManager {
     private static final RutinaRepository rutinasRepository = new RutinaRepository();
 
+    public void crearRutina() {
+
+    }
+
     public void agregarEjercicioRutina(String nombreRutina, Ejercicio ejercicio) {
         Rutina rutina = rutinasRepository.findByNombre(nombreRutina);
         if (rutina != null) {
@@ -27,5 +31,10 @@ public class RutinasManager {
             System.out.println("La rutina no existe");
             //todo: log mongo
         }
+    }
+
+    public void agregarRutinaRutina(String rutinaCompuesta, String nombreNuevaRutina) {
+        Rutina rutina = rutinasRepository.findByNombre(rutinaCompuesta);
+        //rutina.addRutina();
     }
 }

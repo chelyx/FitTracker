@@ -30,12 +30,12 @@ public class UsuarioManager {
         }
     }
 
-    public void agregarEjercicioRutina(String user, String nombreRutina, Ejercicio ejercicio) throws DatosInvalidosException {
+    public void agregarEjercicioRutina(String user, String nombreRutina, Ejercicio ejercicio) {
         Usuario usuario = userRepo.findByUsuario(user);
         if (usuario != null) {
             rutinasManager.agregarEjercicioRutina(nombreRutina, ejercicio);
         } else {
-            throw new DatosInvalidosException("El usuario es incorrecto.");
+            //throw new DatosInvalidosException("El usuario es incorrecto.");
         }
     }
 

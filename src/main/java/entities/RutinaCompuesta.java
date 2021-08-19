@@ -24,14 +24,6 @@ public class RutinaCompuesta extends Rutina implements Serializable {
         this.rutinas = new ArrayList<Rutina>();
     }
 
-    public void add(Rutina r) {
-        this.rutinas.add(r);
-    }
-
-    public void remove(Rutina r) {
-        this.rutinas.remove(r);
-    }
-
     @Override
     public String getNombre() {
         return nombre;
@@ -65,5 +57,23 @@ public class RutinaCompuesta extends Rutina implements Serializable {
         return this.rutinas.stream().map(r -> r.getMusculos()).collect(Collectors.joining(", "));
     }
 
+    @Override
+    public void addRutina(Rutina r) {
+        this.rutinas.add(r);
+    }
 
+    @Override
+    public void removeRutina(Rutina r) {
+        this.rutinas.remove(r);
+    }
+
+    @Override
+    public void addEjercicio(Ejercicio ejercicio) {
+        this.rutinas.forEach(e -> e.addEjercicio(ejercicio));
+    }
+
+    @Override
+    public void removeEjercicio(Ejercicio ejercicio) {
+        this.rutinas.forEach(r -> r.removeEjercicio(ejercicio));
+    }
 }

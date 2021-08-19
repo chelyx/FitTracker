@@ -35,14 +35,8 @@ public class RutinaRepository {
     }
 
     public Rutina findByNombre(String nombre) {
-        Rutina lista = null;
-        try {
-            lista = (Rutina) EntityManagerHelper.createQuery("select r from Rutina " +
-                    "where r.nombre = ?1").setParameter(1, nombre).getSingleResult();
-        } catch (Exception e) {
-            //TODO: mongoDB loggueo
-        }
-        return lista;
+        return (Rutina) EntityManagerHelper.createQuery("from Rutina " +
+                "where nombre = ?1").setParameter(1, nombre).getSingleResult();
     }
 
     public List<Rutina> findAll() {

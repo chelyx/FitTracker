@@ -34,4 +34,6 @@ public abstract class Rutina {
     }
     public void addEjercicio(Ejercicio ej) {}//TODO: revisar rutinas compuestas comportamiento
     public void removeEjercicio(Ejercicio ej){}
+    public void addRutina(Rutina r) {}
+    public void removeRutina(Rutina r) {}
 }

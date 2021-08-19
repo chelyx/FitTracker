@@ -5,6 +5,7 @@ import entities.Ejercicio;
 import entities.Rutina;
 import entities.RutinaSimple;
 import entities.Usuario;
+import managers.UsuarioManager;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class Main {/* pa probar cosas*/
     private static UsuarioRepository userRepo = new UsuarioRepository();
     private static RutinaRepository rutinasRepo = new RutinaRepository();
     private static EjercicioRepository ejerciciosRepo = new EjercicioRepository();
+
+    private static UsuarioManager userManager = new UsuarioManager();
     public static void main(String[] args) {
         /* TODO: BORRAR DE LA BD, SI LO VOLVES A CORRER LOS VOLVES A CREAR.
         Usuario usuario = new Usuario();
@@ -55,6 +58,9 @@ public class Main {/* pa probar cosas*/
             System.out.println(e.getNombre());
         });
          */
+       // userManager.crearRutina("dummy", "Piernas", true);
+        Ejercicio hipthrust = new Ejercicio("hip-thrust", "cuadricep", 4, 10, 15, 10);
+        userManager.agregarEjercicioRutina("dummy", "Piernas", hipthrust);
     }
 
 }

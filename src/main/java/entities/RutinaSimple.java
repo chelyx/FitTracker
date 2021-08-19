@@ -23,14 +23,6 @@ public class RutinaSimple extends Rutina implements Serializable {
         this.ejercicios = new ArrayList<>();
     }
 
-    public void addEjercicio(Ejercicio ej) {
-        this.ejercicios.add(ej);
-    }
-
-    public void removeEjercicio(Ejercicio ej) {
-        this.ejercicios.remove(ej);
-    }
-
     @Override
     public int getKcal() {
        return this.ejercicios.stream()
@@ -63,5 +55,15 @@ public class RutinaSimple extends Rutina implements Serializable {
     @Override
     public String getNombre() {
         return this.nombre;
+    }
+
+    @Override
+    public void addEjercicio(Ejercicio ej) {
+        this.ejercicios.add(ej);
+    }
+
+    @Override
+    public void removeEjercicio(Ejercicio ej) {
+        this.ejercicios.remove(ej);
     }
 }
