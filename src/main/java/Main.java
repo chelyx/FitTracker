@@ -69,8 +69,17 @@ public class Main {
                 System.out.println("Ingrese el peso actual:");
                 Float p = sc.nextFloat();
                 Pesaje peso = new Pesaje(LocalDate.now(), p);
+                Float pesoAnterior = usuario.pesoActual();
                 userManager.agregarNuevoPeso(usuario.getNombre(), peso);
                 System.out.println("Nuevo peso agregado:\n"+peso.getFecha() + ": "+peso.getPeso()+"\n");
+                if(p<pesoAnterior){
+                    System.out.println("Felicidades, disminuiste en " + (pesoAnterior-p) +"Kg tu peso");
+                }else if(p>pesoAnterior){
+                    System.out.println("Oops! Aumentaste en " + (p-pesoAnterior) + "Kg tu peso");
+                }else{
+                    System.out.println("Mantuviste tu peso!, felicidades!");
+                }
+
             }
             case 6: {
                 int diasUltPesaje = usuario.diasUltimoPesaje();

@@ -29,4 +29,6 @@ public class NivelAvanzado extends Nivel implements Serializable {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt() == 1 ? new RutinaSimple(nombre) : new RutinaCompuesta(nombre);
     }
+
+    public String getNombreNivel(){return "AVANZADO";}
 }

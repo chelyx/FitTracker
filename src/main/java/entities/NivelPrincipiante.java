@@ -25,4 +25,5 @@ public class NivelPrincipiante extends Nivel {
     public Rutina crearRutina(String nombre) {
         return new RutinaSimple(nombre);
     }
+    public String getNombreNivel(){return "PRINCIPIANTE";}
 }

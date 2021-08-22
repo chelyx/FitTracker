@@ -18,4 +18,6 @@ public abstract class Nivel {
     void mostrarRutina(Rutina r) {};
 
     Rutina crearRutina(String nombre) {return null;};
+
+    public String getNombreNivel(){return null;}
 }

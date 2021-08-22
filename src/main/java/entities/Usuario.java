@@ -145,8 +145,11 @@ public class Usuario extends EntidadPersistente{
         Pesaje ultPesaje = misPesajes.get(0) ;
         Date ultimoPesaje  = date.parse(ultPesaje.getFecha().toString());
         Date hoy = date.parse(fechaActual.toString() );
-        return (int) ((hoy.getTime()-ultimoPesaje.getTime()) / TimeUnit.DAYS.toMillis(1));
+        return (int) ((hoy.getTime()-ultimoPesaje.getTime()) / (TimeUnit.DAYS.toMillis(1)+1));
+    }
 
+    public Float pesoActual(){
+       return (this.misPesajes.get(this.misPesajes.size()-1)).getPeso();
     }
 
     public Usuario dummyUser() {
