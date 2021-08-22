@@ -1,11 +1,14 @@
 package entities;
 
 import Notificador.Notificador;
+import com.twilio.rest.api.v2010.account.availablephonenumbercountry.Local;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 @Table(name = "USUARIO")
@@ -133,6 +136,17 @@ public class Usuario extends EntidadPersistente{
 
     public void cargarPesaje(Pesaje peso){
         this.misPesajes.add(peso);
+    }
+
+    public int diasUltimoPesaje() throws ParseException {
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-mm-dd");
+        LocalDate fechaActual = LocalDate.now();
+        misPesajes.sort(Comparator.comparing(Pesaje::getFecha));
+        Pesaje ultPesaje = misPesajes.get(0) ;
+        Date ultimoPesaje  = date.parse(ultPesaje.getFecha().toString());
+        Date hoy = date.parse(fechaActual.toString() );
+        return (int) ((hoy.getTime()-ultimoPesaje.getTime()) / TimeUnit.DAYS.toMillis(1));
+
     }
 
     public Usuario dummyUser() {

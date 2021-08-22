@@ -28,4 +28,16 @@ public class Pesaje extends EntidadPersistente {
     public Float getPeso() {
         return peso;
     }
+
+    /*public Pesaje sortByDate(Pesaje p1,Pesaje p2){
+        if(p1.getFecha().isAfter(p2.getFecha())){
+            return p1;
+        }else if (p1.getFecha().isBefore(p2.getFecha())){
+            return p2;
+        }else{
+            return p1;
+        }
+    }*/
+
+
 }

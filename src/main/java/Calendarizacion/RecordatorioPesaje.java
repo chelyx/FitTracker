@@ -6,6 +6,8 @@ import Repositorios.UsuarioRepository;
 import entities.Usuario;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+
+import java.text.ParseException;
 import java.util.List;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -30,22 +32,17 @@ public class RecordatorioPesaje {
         public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
             for(Usuario user : repoUsuarios.findAll()){
-                List<Notificador> notificadores =  user.getFormasDeNotificar();
-                Notification notificacion = new Notification("Recordatorio: Pesaje diario",user.getNombre()+"! No olvides registrar tu peso!");
-                notificadores.forEach(not -> not.notify(user, notificacion));
+                try {
+                    if (user.diasUltimoPesaje() > 2){
+                        List<Notificador> notificadores =  user.getFormasDeNotificar();
+                        Notification notificacion = new Notification("Recordatorio: Pesaje diario",user.getNombre()+"! No olvides registrar tu peso!");
+                        notificadores.forEach(not -> not.notify(user, notificacion));
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
             }
-
-            /*
-            Usuario user1 = new Usuario().dummyUser2();
-            NotificadorMail not = new NotificadorMail();
-            not.notify(user1,new Notification("asunto","pesate carajo!"));
-            System.out.println("PESATE CARAJO");
-
-            SMSNotification smsnot = new SMSNotification();
-            Notification notificacion = new Notification("Recordatorio: Pesaje diario",user1.getNombre()+"! No olvides registrar tu peso!");
-            smsnot.notify(user1,notificacion);
-            System.out.println("PESATE CARAJO SMS");
-            */
         }
     }
 }

@@ -5,6 +5,7 @@ import entities.*;
 import managers.RutinasManager;
 import managers.UsuarioManager;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Main {
     private static Usuario usuario;
     private static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         System.out.println("Bienvenido a FitTracker \n1- Registrarse \n2- Iniciar Sesión");
         int opcion = sc.nextInt();
         if (opcion == 1) {
@@ -27,7 +28,7 @@ public class Main {
         System.out.println("Hola " + usuario.getNombre());
         boolean keepGoing = true;
         while(keepGoing) {
-            System.out.println("1 - Ver Rutinas\n2 - Agregar Rutina \n3 - Obtener sugerencia\n4 - Mis Pesajes\n5 - Registrar peso");
+            System.out.println("1 - Ver Rutinas\n2 - Agregar Rutina \n3 - Obtener sugerencia\n4 - Mis Pesajes\n5 - Registrar peso\n6 - Dias desde el ultimo pesaje");
             opcion = sc.nextInt();
             handleMenu(opcion);
             System.out.println("Desea realizar otra operación? \n1- SI \n2- NO");
@@ -37,7 +38,7 @@ public class Main {
         return;
     }
 
-    private static void handleMenu(int op) {
+    private static void handleMenu(int op) throws ParseException {
         switch (op) {
             case 1: {
                 List<Rutina> misRutinas = rutinaManager.getRutinas(usuario.getUsuario());
@@ -70,6 +71,10 @@ public class Main {
                 Pesaje peso = new Pesaje(LocalDate.now(), p);
                 userManager.agregarNuevoPeso(usuario.getNombre(), peso);
                 System.out.println("Nuevo peso agregado:\n"+peso.getFecha() + ": "+peso.getPeso()+"\n");
+            }
+            case 6: {
+                int diasUltPesaje = usuario.diasUltimoPesaje();
+                System.out.println("Dias desde el ultimo pesaje: " + diasUltPesaje);
             }
         }
     }
