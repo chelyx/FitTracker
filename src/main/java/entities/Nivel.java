@@ -14,4 +14,8 @@ public abstract class Nivel {
     Rutina sugerir(){
         return null;
     }
+
+    void mostrarRutina(Rutina r) {};
+
+    Rutina crearRutina(String nombre) {return null;};
 }

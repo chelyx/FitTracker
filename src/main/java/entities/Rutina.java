@@ -32,8 +32,7 @@ public abstract class Rutina {
     public String getMusculos(){
         return null;
     }
-    public void addEjercicio(Ejercicio ej) {}//TODO: revisar rutinas compuestas comportamiento
+    public void addEjercicio(Ejercicio ej) {}
     public void removeEjercicio(Ejercicio ej){}
-    public void addRutina(Rutina r) {}
-    public void removeRutina(Rutina r) {}
+
 }

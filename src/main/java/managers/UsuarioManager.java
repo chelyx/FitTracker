@@ -7,7 +7,7 @@ public class UsuarioManager {
     private static final UsuarioRepository userRepo = new UsuarioRepository();
     private static final RutinasManager rutinasManager = new RutinasManager();
 
-    public void registrarUsuario(String usuario, String password, String nombre,
+    public Usuario registrarUsuario(String usuario, String password, String nombre,
       String apellido, Long telefono, String mail, int altura) throws DatosInvalidosException {
         // logguear inicio mongoDB
         if (usuario.isEmpty() || password.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
@@ -15,13 +15,17 @@ public class UsuarioManager {
         }
         Usuario user = new Usuario(usuario, password, nombre, apellido, telefono, mail, altura);
         userRepo.save(user);
+        return user;
     }
 
-    public void crearRutina(String user, String nombreRutina, boolean simple){
-        Usuario usuario = userRepo.findByUsuario(user);
-        Rutina rutina = simple ? new RutinaSimple(nombreRutina) : new RutinaCompuesta(nombreRutina);
+    public Usuario validarUsuario(String userName, String password) {
+        return userRepo.findByUsuarioYContra(userName, password);
+    }
+
+    public void crearRutina(String user, String nombreRutina){
         try {
-            usuario.cargarRutina(rutina);
+            Usuario usuario = userRepo.findByUsuario(user);
+            usuario.cargarRutina(nombreRutina);
             userRepo.save(usuario);
         } catch (Exception e) {
             //todo: log mongo
@@ -32,11 +36,13 @@ public class UsuarioManager {
 
     public void agregarEjercicioRutina(String user, String nombreRutina, Ejercicio ejercicio) {
         Usuario usuario = userRepo.findByUsuario(user);
-        if (usuario != null) {
-            rutinasManager.agregarEjercicioRutina(nombreRutina, ejercicio);
-        } else {
-            //throw new DatosInvalidosException("El usuario es incorrecto.");
-        }
+        rutinasManager.agregarEjercicioRutina(nombreRutina, ejercicio);
+    }
+
+    public void agregarNuevoPeso(String user, Pesaje peso) {
+        Usuario usuario = userRepo.findByUsuario(user);
+        usuario.cargarPesaje(peso);
+        userRepo.save(usuario);
     }
 
 }

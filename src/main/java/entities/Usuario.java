@@ -122,13 +122,17 @@ public class Usuario extends EntidadPersistente{
         return this.nivel.sugerir();
     }
 
-    public void cargarRutina(Rutina unaRutina){
-        this.misRutinas.add(unaRutina);
+    public void displayRutina(Rutina r) {
+     this.nivel.mostrarRutina(r);
     }
 
-    public void cargarPesaje(LocalDate fecha, Float pesaje){
-        Pesaje p = new Pesaje(fecha, pesaje);
-        this.misPesajes.add(p);
+    public void cargarRutina(String nombre){
+        Rutina r = this.nivel.crearRutina(nombre);
+        this.misRutinas.add(r);
+    }
+
+    public void cargarPesaje(Pesaje peso){
+        this.misPesajes.add(peso);
     }
 
     public Usuario dummyUser() {

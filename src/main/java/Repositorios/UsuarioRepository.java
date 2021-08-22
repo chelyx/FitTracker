@@ -25,6 +25,13 @@ public class UsuarioRepository  {
                .getSingleResult();
    }
 
+    public Usuario findByUsuarioYContra(String usuario, String contrasenia) {
+        return (Usuario) EntityManagerHelper.createQuery("from Usuario where usuario = ?1 and contraseña = ?2")
+                .setParameter(1, usuario)
+                .setParameter(2, contrasenia)
+                .getSingleResult();
+    }
+
    public List<Usuario> findAll() {
        return (List<Usuario>) EntityManagerHelper.createQuery("from Usuario").getResultList();
    }

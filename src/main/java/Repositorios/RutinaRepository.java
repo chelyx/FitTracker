@@ -2,6 +2,7 @@ package Repositorios;
 
 import db.EntityManagerHelper;
 import entities.Rutina;
+import entities.RutinaCompuesta;
 
 import javax.persistence.Query;
 import java.util.List;
