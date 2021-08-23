@@ -22,21 +22,17 @@ public class UsuarioManager {
         return userRepo.findByUsuarioYContra(userName, password);
     }
 
-    public void crearRutina(String user, String nombreRutina){
+    public Rutina crearRutina(String user, String nombreRutina){
         try {
             Usuario usuario = userRepo.findByUsuario(user);
-            usuario.cargarRutina(nombreRutina);
+            Rutina rutina = usuario.cargarRutina(nombreRutina);
             userRepo.save(usuario);
+            return rutina;
         } catch (Exception e) {
             //todo: log mongo
             System.out.println("El usuario no existe");
             throw e;
         }
-    }
-
-    public void agregarEjercicioRutina(String user, String nombreRutina, Ejercicio ejercicio) {
-        Usuario usuario = userRepo.findByUsuario(user);
-        rutinasManager.agregarEjercicioRutina(nombreRutina, ejercicio);
     }
 
     public void agregarNuevoPeso(String user, Pesaje peso) {

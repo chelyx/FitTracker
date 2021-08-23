@@ -1,26 +1,35 @@
 package entities;
 
+import Repositorios.EjercicioRepository;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Scanner;
 
 @Entity
 @DiscriminatorValue("AVANZADO")
 public class NivelAvanzado extends Nivel implements Serializable {
+    private static final EjercicioRepository ejerciciosRepo = new EjercicioRepository();
+
     public Rutina sugerir(){
         return new RutinaCompuesta("Dominadas");
     }
 
     public void mostrarRutina(Rutina r) {
+        List<Ejercicio> ejercicios = ejerciciosRepo.findByRutina(r.getNombre());
         System.out.println("Rutina: " + r.getNombre()
                 + "\nDificultad: " + r.getDificultad()
                 + "\nMúsculos: " + r.getMusculos()
                 + "\nCalorías quemadas: " + r.getKcal()
                 + "\nTiempo estimado: " + r.getTiempo()
                 +"\nEjercicios: ");
-        r.getSubEjercicios().forEach(ej -> {
-            System.out.println("    \n"+ej);
+        ejercicios.forEach(e -> {
+            System.out.println(e.getNombre()
+                    + ": \nRepeticiones" + e.getRepeticiones()
+                    + ": \nMúsculos" + e.getMusculos()
+                    + ": \nDificultad" + e.getNivelDificultad());
         });
     }
 

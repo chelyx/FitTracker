@@ -13,12 +13,12 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-public class NivelController {
+public class CalendarController {
 
     static UsuarioRepository repoUsuarios = new UsuarioRepository();
 
     public static void main(String[] args) throws SchedulerException {
-        JobDetail job = newJob(NivelController.ChequeoNivel.class).withIdentity("chequeo-nivel").build();
+        JobDetail job = newJob(CalendarController.ChequeoNivel.class).withIdentity("chequeo-nivel").build();
 
         Trigger trigger = newTrigger().withIdentity("trigger").startNow().withSchedule(simpleSchedule().withIntervalInSeconds(20).repeatForever()).build();
         //Trigger trigger = newTrigger().withIdentity("trigger").startNow().withSchedule(simpleSchedule().withIntervalInHours(24).repeatForever()).build();

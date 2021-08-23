@@ -5,9 +5,7 @@ import entities.*;
 import managers.RutinasManager;
 import managers.UsuarioManager;
 
-import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +15,7 @@ public class Main {
     private static Usuario usuario;
     private static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         System.out.println("Bienvenido a FitTracker \n1- Registrarse \n2- Iniciar Sesión");
         int opcion = sc.nextInt();
         if (opcion == 1) {
@@ -28,7 +26,7 @@ public class Main {
         System.out.println("Hola " + usuario.getNombre());
         boolean keepGoing = true;
         while(keepGoing) {
-            System.out.println("1 - Ver Rutinas\n2 - Agregar Rutina \n3 - Obtener sugerencia\n4 - Mis Pesajes\n5 - Registrar peso\n6 - Dias desde el ultimo pesaje");
+            System.out.println("1 - Ver Rutinas\n2 - Agregar Rutina \n3 - Obtener sugerencia\n4 - Mis Pesajes\n5 - Registrar peso");
             opcion = sc.nextInt();
             handleMenu(opcion);
             System.out.println("Desea realizar otra operación? \n1- SI \n2- NO");
@@ -38,7 +36,7 @@ public class Main {
         return;
     }
 
-    private static void handleMenu(int op) throws ParseException {
+    private static void handleMenu(int op) {
         switch (op) {
             case 1: {
                 List<Rutina> misRutinas = rutinaManager.getRutinas(usuario.getUsuario());
@@ -49,8 +47,9 @@ public class Main {
             }
             case 2: {
                 System.out.println("Ingrese el nombre de la rutina:");
-                String rutina = sc.next();
-                userManager.crearRutina(usuario.getUsuario(), rutina);
+                String nombreRutina = sc.next();
+                Rutina rutinaCreada = userManager.crearRutina(usuario.getUsuario(), nombreRutina);
+                ingresarEjercicios(rutinaCreada.getNombre());
                 break;
             }
             case 3: {
@@ -80,10 +79,6 @@ public class Main {
                     System.out.println("Mantuviste tu peso!, felicidades!");
                 }
 
-            }
-            case 6: {
-                int diasUltPesaje = usuario.diasUltimoPesaje();
-                System.out.println("Dias desde el ultimo pesaje: " + diasUltPesaje);
             }
         }
     }
@@ -118,4 +113,26 @@ public class Main {
         usuario = userManager.validarUsuario(user, psw);
     }
 
+    private static  void ingresarEjercicios(String nombreRutina) {
+        System.out.println("Debe ingresar al menos un ejercicio.");
+        boolean otroMas = true;
+        while(otroMas) {
+            System.out.println("Nombre:");
+            String nombre = sc.next();
+            System.out.println("Musculos involucrados:");
+            String musculos = sc.next();
+            System.out.println("Dificultad:");
+            int dif = sc.nextInt();
+            System.out.println("Calorías por repetición:");
+            int kcal = sc.nextInt();
+            System.out.println("Tiempo por repetición:");
+            int duracion = sc.nextInt();
+            System.out.println("Repeticiones:");
+            int reps = sc.nextInt();
+            Ejercicio ejercicio = new Ejercicio(nombre, musculos, dif, kcal, duracion, reps);
+            rutinaManager.agregarEjercicioRutina(nombreRutina, ejercicio);
+            System.out.println("Desea ingresar otro ejercicio? \n1- SI 2- NO");
+            otroMas = sc.nextInt() == 1;
+        }
+    }
 }

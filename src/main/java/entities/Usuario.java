@@ -129,9 +129,10 @@ public class Usuario extends EntidadPersistente{
      this.nivel.mostrarRutina(r);
     }
 
-    public void cargarRutina(String nombre){
+    public Rutina cargarRutina(String nombre){
         Rutina r = this.nivel.crearRutina(nombre);
         this.misRutinas.add(r);
+        return r;
     }
 
     public void cargarPesaje(Pesaje peso){
