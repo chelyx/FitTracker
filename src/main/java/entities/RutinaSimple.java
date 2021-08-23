@@ -36,9 +36,14 @@ public class RutinaSimple extends Rutina implements Serializable {
 
     @Override
     public int getDificultad() {
-        return this.ejercicios.stream()
-                .mapToInt(e -> e.getNivelDificultad())
-                .sum() / this.ejercicios.size();
+        if(this.ejercicios.size() > 0) {
+            return this.ejercicios.stream()
+                    .mapToInt(e -> e.getNivelDificultad())
+                    .sum() / this.ejercicios.size();
+        } else {
+            return 0;
+        }
+
     }
 
     @Override

@@ -9,7 +9,9 @@ import java.util.Scanner;
 public class NivelIntermedio extends Nivel {
 
     public Rutina sugerir(){
-        return new RutinaSimple("Gemelos");
+        Rutina r = new RutinaSimple("Brazos");
+        r.addEjercicio(new Ejercicio("Vuelos Laterales", "hombros", 2, 5, 10, 8));
+        return r;
     }
 
     public void mostrarRutina(Rutina r) {
@@ -18,7 +20,7 @@ public class NivelIntermedio extends Nivel {
         if(r.getSubEjercicios().size() > 0) {
             System.out.println("Ejercicios:");
             r.getSubEjercicios().forEach(ej -> {
-                System.out.println(ej+"\n");
+                System.out.println(ej);
             });
         }
     }
@@ -31,3 +33,9 @@ public class NivelIntermedio extends Nivel {
 
     public String getNombreNivel(){return "INTERMEDIO";}
 }
+
+/*Diciendo que queríamos loguear esa info pero como no se relacionaba
+    con el modelo de objetos lo persistimos en mongo
+    Y que es bueno para almacenar gran cantidad de info
+
+ */

@@ -20,8 +20,7 @@ public class RecordatorioPesaje {
     public static void main(String[] args) throws SchedulerException {
         JobDetail job = newJob(pesajeCalendarizado.class).withIdentity("pesaje-calendarizado").build();
 
-        Trigger trigger = newTrigger().withIdentity("trigger").startNow().withSchedule(simpleSchedule().withIntervalInSeconds(600).repeatForever()).build();
-        //Trigger trigger = newTrigger().withIdentity("trigger").startNow().withSchedule(simpleSchedule().withIntervalInHours(24).repeatForever()).build();
+        Trigger trigger = newTrigger().withIdentity("trigger").startNow().withSchedule(simpleSchedule().withIntervalInHours(24).repeatForever()).build();
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
         scheduler.start();
         scheduler.scheduleJob(job, trigger);
