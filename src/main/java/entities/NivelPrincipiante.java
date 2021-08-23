@@ -15,11 +15,13 @@ public class NivelPrincipiante extends Nivel {
     }
 
     public void mostrarRutina(Rutina r) {
-        System.out.println("Rutina: " + r.getNombre()
-                +"\nEjercicios: ");
-        r.getSubEjercicios().forEach(ej -> {
-            System.out.println("    \n"+ej);
-        });
+        System.out.println("Rutina: " + r.getNombre());
+        if(r.getSubEjercicios().size() > 0) {
+            System.out.println("Ejercicios:");
+            r.getSubEjercicios().forEach(ej -> {
+                System.out.println(ej+"\n");
+            });
+        }
     }
 
     public Rutina crearRutina(String nombre) {

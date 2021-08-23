@@ -14,11 +14,13 @@ public class NivelIntermedio extends Nivel {
 
     public void mostrarRutina(Rutina r) {
         System.out.println("Rutina: " + r.getNombre()
-                + "\nDificultad: " + r.getDificultad()
-                +"\nEjercicios: ");
-        r.getSubEjercicios().forEach(ej -> {
-            System.out.println("    \n"+ej);
-        });
+                + "\nDificultad: " + r.getDificultad());
+        if(r.getSubEjercicios().size() > 0) {
+            System.out.println("Ejercicios:");
+            r.getSubEjercicios().forEach(ej -> {
+                System.out.println(ej+"\n");
+            });
+        }
     }
 
     public Rutina crearRutina(String nombre) {

@@ -23,14 +23,17 @@ public class NivelAvanzado extends Nivel implements Serializable {
                 + "\nDificultad: " + r.getDificultad()
                 + "\nMúsculos: " + r.getMusculos()
                 + "\nCalorías quemadas: " + r.getKcal()
-                + "\nTiempo estimado: " + r.getTiempo()
-                +"\nEjercicios: ");
-        ejercicios.forEach(e -> {
-            System.out.println(e.getNombre()
-                    + ": \nRepeticiones" + e.getRepeticiones()
-                    + ": \nMúsculos" + e.getMusculos()
-                    + ": \nDificultad" + e.getNivelDificultad());
-        });
+                + "\nTiempo estimado: " + r.getTiempo());
+        if(ejercicios.size() > 0) {
+            System.out.println("Ejercicios:");
+            ejercicios.forEach(e -> {
+                System.out.println(e.getNombre()
+                        + ": \nRepeticiones" + e.getRepeticiones()
+                        + ": \nMúsculos" + e.getMusculos()
+                        + ": \nDificultad" + e.getNivelDificultad());
+            });
+        }
+
     }
 
     public Rutina crearRutina(String nombre) {

@@ -50,8 +50,6 @@ public class CalendarController {
                     notificadores.forEach(not -> not.notify(user, notificacion));
 
                 }
-
-
             }
         }
     }
